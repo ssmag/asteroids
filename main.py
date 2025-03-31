@@ -2,6 +2,7 @@ import pygame
 # import constants as Const
 from constants import *
 from pygame.time import Clock
+from player import Player
 
 def main():
     print("Starting Asteroids!")
@@ -15,9 +16,11 @@ def game_loop():
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = Clock()
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     while (True):
         on_loop_start()
         screen.fill(0x000000)
+        player.draw(screen)
         on_loop_end(clock, dt)
 
 
