@@ -1,7 +1,7 @@
 import pygame
 # import constants as Const
 from constants import *
-
+from pygame.time import Clock
 
 def main():
     print("Starting Asteroids!")
@@ -12,11 +12,13 @@ def main():
     game_loop()
             
 def game_loop():
+    dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    clock = Clock()
     while (True):
         on_loop_start()
         screen.fill(0x000000)
-        on_loop_end()
+        on_loop_end(clock, dt)
 
 
 def on_loop_start():
@@ -24,8 +26,10 @@ def on_loop_start():
         if event.type == pygame.QUIT:
             sys.exit()
 
-def on_loop_end():
+def on_loop_end(clock: Clock, dt: int):
     pygame.display.flip()
+    d_time = clock.tick(60)
+    dt = d_time/1000
 
 
 if __name__ == "__main__":
