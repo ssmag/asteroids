@@ -29,10 +29,6 @@ def game_loop():
         
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     field = AsteroidField()
-    print(f'asteroid containers {Asteroid.containers}')
-    print(f'asteroidfield containers {AsteroidField.containers}')
-    print(f'asteroidfield {field}')
-    print(f'field containers {field.containers}')
     while (True):
         on_loop_start()
         screen.fill(0x000000)

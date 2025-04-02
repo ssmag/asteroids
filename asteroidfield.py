@@ -28,13 +28,11 @@ class AsteroidField(Sprite):
 
 
     def __init__(self):
-        print("init asteroidfield")
         if hasattr(self, "containers"):
             super().__init__(self.containers)
         self.spawn_timer = 0.0
 
     def spawn(self, radius, position, velocity):
-        print("spawning asteroid...")
         asteroid = Asteroid(position.x, position.y, radius)
         asteroid.velocity = velocity
     
