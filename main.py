@@ -1,6 +1,5 @@
 import pygame
 import sys
-# import constants as Const
 from constants import *
 from pygame.time import Clock
 from player import Player
