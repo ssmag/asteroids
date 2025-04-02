@@ -27,19 +27,15 @@ class Player(CircleShape):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:
-            print("hit a")
             self.rotate(-dt)
         
         if keys[pygame.K_d]:
-            print("hit d")
             self.rotate(dt)
 
         if keys[pygame.K_w]:
-            print("hit w")
             self.move(dt)
         
         if keys[pygame.K_s]:
-            print("hit s")
             self.move(-dt)
         
 

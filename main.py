@@ -2,6 +2,7 @@ import pygame
 import sys
 from constants import *
 from pygame.time import Clock
+from pygame.sprite import Sprite
 from player import Player
 from asteroidfield import AsteroidField
 from asteroid import Asteroid
@@ -16,6 +17,9 @@ def main():
     print(f'Screen height: {SCREEN_HEIGHT}')
     
     pygame.init()
+    Player.containers = (updateable, drawable)
+    Asteroid.containers = (asteroids, updateable, drawable)
+    AsteroidField.containers = (updateable)
     game_loop()
             
 def game_loop():
@@ -23,11 +27,12 @@ def game_loop():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = Clock()
         
-    Player.containers = (updateable, drawable)
-    Asteroid.containers = (asteroids, updateable, drawable)
-    AsteroidField.containers = (updateable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     field = AsteroidField()
+    print(f'asteroid containers {Asteroid.containers}')
+    print(f'asteroidfield containers {AsteroidField.containers}')
+    print(f'asteroidfield {field}')
+    print(f'field containers {field.containers}')
     while (True):
         on_loop_start()
         screen.fill(0x000000)

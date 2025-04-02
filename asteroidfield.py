@@ -22,31 +22,31 @@ class AsteroidField(Sprite):
         ],
         [
             Vector2(0, -1),
-            lambda y: Vector2(x * SCREEN_WIDTH, SCREEN_HEIGHT + ASTEROID_MAX_RADIUS)
+            lambda x: Vector2(x * SCREEN_WIDTH, SCREEN_HEIGHT + ASTEROID_MAX_RADIUS)
         ]
     ]
 
 
-def __init__(self):
-    print("init asteroidfield")
-    Sprite.__init__(self, self.containers)
-    self.spawn_timer = 0.0
-        
-def spawn(self, radius, position, velocity):
-    print("spawning asteroid...")
-    asteroid = Asteroid(position.x, position.y, radius)
-    asteroid.velocity = velocity
+    def __init__(self):
+        print("init asteroidfield")
+        if hasattr(self, "containers"):
+            super().__init__(self.containers)
+        self.spawn_timer = 0.0
 
-def update(self, dt):
-    print("updating asteroidfield...")
-    self.spawn_timer += dt
-    if self.spawn_timer > ASTEROID_SPAWN_RATE:
-        self.spawn_timer = 0
-
-        edge = random.choice(self.edges)
-        speed = random.randint(40, 100)
-        velocity = edge[0] * speed
-        velocity = velocity.rotate(random.randint(-30, 30))
-        position = edge[1](random.uniform(0, 1))
-        kind = random.randint(2, ASTEROID_KINDS)
-        self.spawn(ASTEROID_MIN_RADIUS * kind, position, velocity)
+    def spawn(self, radius, position, velocity):
+        print("spawning asteroid...")
+        asteroid = Asteroid(position.x, position.y, radius)
+        asteroid.velocity = velocity
+    
+    def update(self, dt):
+        self.spawn_timer += dt
+        if self.spawn_timer > ASTEROID_SPAWN_RATE:
+            self.spawn_timer = 0
+    
+            edge = random.choice(self.edges)
+            speed = random.randint(40, 100)
+            velocity = edge[0] * speed
+            velocity = velocity.rotate(random.randint(-30, 30))
+            position = edge[1](random.uniform(0, 1))
+            kind = random.randint(2, ASTEROID_KINDS)
+            self.spawn(ASTEROID_MIN_RADIUS * kind, position, velocity)
