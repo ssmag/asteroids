@@ -3,9 +3,12 @@ import sys
 from constants import *
 from pygame.time import Clock
 from player import Player
+from asteroidfield import AsteroidField
+from asteroid import Asteroid
 
 updateable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
+asteroids = pygame.sprite.Group()
 
 def main():
     print("Starting Asteroids!")
@@ -21,7 +24,10 @@ def game_loop():
     clock = Clock()
         
     Player.containers = (updateable, drawable)
+    Asteroid.containers = (asteroids, updateable, drawable)
+    AsteroidField.containers = (updateable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    field = AsteroidField()
     while (True):
         on_loop_start()
         screen.fill(0x000000)
