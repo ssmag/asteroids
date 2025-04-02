@@ -1,4 +1,5 @@
 import pygame
+import sys
 # import constants as Const
 from constants import *
 from pygame.time import Clock
@@ -20,20 +21,19 @@ def game_loop():
     while (True):
         on_loop_start()
         screen.fill(0x000000)
+        print(dt)
+        player.update(dt)
         player.draw(screen)
-        on_loop_end(clock, dt)
+        pygame.display.flip()
+        d_time = clock.tick(60)
+        dt = d_time/1000
+        print(f'loop end dt: {dt}')
 
 
 def on_loop_start():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-
-def on_loop_end(clock: Clock, dt: int):
-    pygame.display.flip()
-    d_time = clock.tick(60)
-    dt = d_time/1000
-
 
 if __name__ == "__main__":
     main()
