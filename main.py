@@ -6,10 +6,12 @@ from pygame.sprite import Sprite
 from player import Player
 from asteroidfield import AsteroidField
 from asteroid import Asteroid
+from shot import Shot
 
 updateable = pygame.sprite.Group()
 drawable = pygame.sprite.Group()
 asteroids = pygame.sprite.Group()
+shots = pygame.sprite.Group()
 
 def main():
     print("Starting Asteroids!")
@@ -20,6 +22,7 @@ def main():
     Player.containers = (updateable, drawable)
     Asteroid.containers = (asteroids, updateable, drawable)
     AsteroidField.containers = (updateable)
+    Shot.containers = (shots, updateable, drawable)
     game_loop()
             
 def game_loop():
@@ -50,7 +53,6 @@ def draw(screen):
 def check_for_collisions(player):
     for a1 in asteroids:
         d = a1.distance_to(player)
-        print(f'check_for_collisions: {a1} distance: {d}')
         if (d <= 0):
             print("Game over!")
             sys.exit()
