@@ -51,12 +51,23 @@ def draw(screen):
         d.draw(screen)
 
 def check_for_collisions(player):
-    for a1 in asteroids:
-        d = a1.distance_to(player)
+    check_player_death(player)
+    check_asteroid_shot()
+
+def check_asteroid_shot():
+    for a in asteroids:
+        for b in shots:
+            d = a.distance_to(b)
+            if (d <= 0):
+                a.kill()
+                b.kill()
+
+def check_player_death(player):
+    for a in asteroids:
+        d = a.distance_to(player)
         if (d <= 0):
             print("Game over!")
             sys.exit()
-
 
 def on_loop_start():
     for event in pygame.event.get():
