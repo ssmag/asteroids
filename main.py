@@ -33,6 +33,7 @@ def game_loop():
         on_loop_start()
         screen.fill(0x000000)
         update(dt)
+        check_for_collisions(player)
         draw(screen)
         pygame.display.flip()
         d_time = clock.tick(60)
@@ -45,6 +46,15 @@ def update(dt):
 def draw(screen):
     for d in drawable:
         d.draw(screen)
+
+def check_for_collisions(player):
+    for a1 in asteroids:
+        d = a1.distance_to(player)
+        print(f'check_for_collisions: {a1} distance: {d}')
+        if (d <= 0):
+            print("Game over!")
+            sys.exit()
+
 
 def on_loop_start():
     for event in pygame.event.get():

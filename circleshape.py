@@ -18,3 +18,7 @@ class CircleShape(Sprite):
     def update(self, dt):
         pass
 
+    def distance_to(self, other):
+        return (self.position - other.position).magnitude() - (self.radius + other.radius)
+
+
