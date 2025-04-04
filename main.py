@@ -59,7 +59,7 @@ def check_asteroid_shot():
         for b in shots:
             d = a.distance_to(b)
             if (d <= 0):
-                a.kill()
+                a.split()
                 b.kill()
 
 def check_player_death(player):
